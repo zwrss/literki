@@ -14,10 +14,16 @@ namespace sciecNeuronowa
         public Form1()
         {
             InitializeComponent();
-            button1.Click += new EventHandler(button1_Click);
+            openButton.Click += OnOpenButtonClick;
+            recognizeButton.Click += OnRecognizeButtonClick;
         }
 
-        void button1_Click(object sender, EventArgs e)
+        void OnRecognizeButtonClick(object sender, EventArgs e)
+        {
+            textBox1.Text = "Rozpoznawanie tekstu";
+        }
+
+        void OnOpenButtonClick(object sender, EventArgs e)
         {
             OpenFileDialog open = new OpenFileDialog();
 
