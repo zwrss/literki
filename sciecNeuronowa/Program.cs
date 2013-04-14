@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using pl.edu.pk.NeuralNetwork;
+using System.Diagnostics;
 
 namespace sciecNeuronowa
 {

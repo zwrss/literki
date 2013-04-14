@@ -1,7 +1,7 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "sciecNeuronowa", "sciecNeuronowa\sciecNeuronowa.csproj", "{A213D20E-C7CC-4406-AA37-2050F4569D57}"
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "pl.edu.pk", "sciecNeuronowa\pl.edu.pk.csproj", "{A213D20E-C7CC-4406-AA37-2050F4569D57}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
