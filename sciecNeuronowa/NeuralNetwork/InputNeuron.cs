@@ -23,5 +23,18 @@ namespace pl.edu.pk.NeuralNetwork
         {
             return _input;
         }
+
+        public List<double> getWeights()
+        {
+            return new List<double>(0);
+        }
+
+        public void setWeights(List<double> weights)
+        {
+        }
+
+        public void calculate()
+        { 
+        }
     }
 }

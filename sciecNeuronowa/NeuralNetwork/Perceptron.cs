@@ -38,5 +38,15 @@ namespace pl.edu.pk.NeuralNetwork
             double beta = 10.0;
             return 1.0 / (1 + Math.Exp(-beta * x));
         }
+
+        public List<double> getWeights()
+        {
+            return this._weights;
+        }
+
+        public void setWeights(List<double> weights)
+        {
+            this._weights = weights;
+        }
     }
 }
