@@ -1,52 +1,76 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using sciecNeuronowa;
 
 namespace pl.edu.pk.NeuralNetwork
 {
-    public class Perceptron : INeuron
+    public class Perceptron
     {
-        List<INeuron> _inputs;
-        List<double> _weights;
-        double _output;
+        List<Link> _inputs;
+        List<Link> _outputs;
+        IActivationFunction func;
 
-        public Perceptron(List<INeuron> inputs, List<double> weights)
+        public Perceptron(IActivationFunction func)
         {
-            this._inputs = inputs;
-            this._weights = weights;
-            this._output = 0.0;
+            this.func = func;
+            this._inputs = new List<Link>();
+            this._outputs = new List<Link>();
+            //Adding bias
+            double w = Program.random.NextDouble() * 2 - 1;
+            Link bias = new Link(w, null, this); //TODO Waga!
+            bias.setSignal(1.0);
+            this._inputs.Add(bias);
         }
 
-        public double output()
+        double activationFunction(double x)
         {
-            return this._output;
+            return func.func(x);
         }
 
-        public void calculate()
+        public void work()
         {
+            //Calculating input signal
             double input = 0.0;
-
-            for (int i = 0; i < _inputs.Count; i++)
-                input += _inputs[i].output() * _weights[i];
-
-            this._output = activationFunc(input);
+            foreach (Link l in _inputs)
+            {
+                input += l.getSignal();
+            }
+            //Calculating output signal
+            double output = activationFunction(input);
+            //Propagating output signal
+            foreach (Link l in _outputs)
+            {
+                l.setSignal(output);
+            }
         }
 
-        private double activationFunc(double x)
+        public void addInput(Link l)
         {
-            double beta = 10.0;
-            return 1.0 / (1 + Math.Exp(-beta * x));
+            this._inputs.Add(l);
         }
 
-        public List<double> getWeights()
+        public void addOutput(Link l)
         {
-            return this._weights;
+            this._outputs.Add(l);
         }
 
-        public void setWeights(List<double> weights)
+        public void linkWith(Perceptron p)
         {
-            this._weights = weights;
+            double w = Program.random.NextDouble() * 2 - 1;
+            Link l = new Link(w, this, p); //TODO Waga!
+            this.addOutput(l);
+            p.addInput(l);
         }
+
+        public List<Link> getInputs()
+        {
+            return this._inputs;
+        }
+
+        public List<Link> getOutputs()
+        {
+            return this._outputs;
+        }
+
     }
 }
