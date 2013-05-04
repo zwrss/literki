@@ -69,14 +69,14 @@ namespace pl.edu.pk.NeuralNetwork
 
         void asInput(Perceptron n)
         {
-            Link link = new Link(1);
+            Link link = new Link(1, null, n);
             this._input.Add(link);
             n.addInput(link);
         }
 
         void asOutput(Perceptron n)
         {
-            Link link = new Link(1);
+            Link link = new Link(1, n, null);
             this._output.Add(link);
             n.addOutput(link);
         }
@@ -129,36 +129,41 @@ namespace pl.edu.pk.NeuralNetwork
 
             for (int i = 0; i < _output.Count; i++)
             {
-                double y = _output[i].getRawSignal();
-                double error = y - expectedOutput[i];
-                //System.Console.WriteLine("Error = " + error);
-                foreach (Link l in _layer3[i].getInputs())
+                _output[i].error = _output[i].getRawSignal() - expectedOutput[i];
+            }
+
+            //Weights between hidden and output layers
+            foreach (Perceptron neuronL3 in _layer3)
+            {
+                double y = neuronL3.getOutputs()[0].getRawSignal();
+                double error = neuronL3.getOutputs()[0].error;
+                foreach (Link linkL2L3 in neuronL3.getInputs())
                 {
-                    double w = l.getWeight();
-                    double dw = mi * error * func.deriv(y) * l.getRawSignal();
-                    l.setWeight(w + dw);
+                    double w = linkL2L3.getWeight();
+                    double h = linkL2L3.getRawSignal();
+                    double dw = mi * error * func.deriv(y) * h;
+                    linkL2L3.setWeight(w + dw);
                 }
             }
 
-
-            foreach (Perceptron neuron in _layer2)
+            //Weights between input and hidden layers
+            foreach (Perceptron neuronL2 in _layer2)
             {
-                double h = neuron.getOutputs()[0].getRawSignal();
-                foreach (Link link in neuron.getInputs())
+                foreach (Link linkL1L2 in neuronL2.getInputs())
                 {
-                    double w = link.getWeight();
+                    double w = linkL1L2.getWeight();
+                    double x = linkL1L2.getRawSignal();
+                    double h = linkL1L2.getOutput().getOutputs()[0].getRawSignal();
                     double sum = 0.0;
-                    for (int i = 0; i < _output.Count; i++)
+                    foreach (Link linkL2L3 in linkL1L2.getOutput().getOutputs())
                     {
-                        double y = _output[i].getRawSignal();
-                        double error = y - expectedOutput[i];
-                        foreach (Link l in _layer3[i].getInputs())
-                        {
-                            sum += error * func.deriv(y) * l.getWeight() * func.deriv(h) * link.getRawSignal();
-                        }
+                        double y = linkL2L3.getOutput().getOutputs()[0].getRawSignal();
+                        double error = linkL2L3.getOutput().getOutputs()[0].error;
+                        double wmk = linkL2L3.getWeight();
+                        sum += error * func.deriv(y) * wmk * func.deriv(h) * x;
                     }
                     double dw = mi * sum;
-                    link.setWeight(w + dw);
+                    linkL1L2.setWeight(w + dw);
                 }
             }
 

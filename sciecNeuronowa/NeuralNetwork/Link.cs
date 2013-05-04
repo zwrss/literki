@@ -4,6 +4,7 @@ namespace pl.edu.pk.NeuralNetwork
     public class Link
     {
         double weight, signal;
+        public double error;
 
         Perceptron input, output;
 
