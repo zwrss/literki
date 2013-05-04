@@ -25,7 +25,7 @@ namespace sciecNeuronowa
         static void NNTest()
         {
             System.Console.WriteLine("Uszanowanko");
-            Network nn = new Network(2, 1, 1);
+            Network nn = new Network(2, 5, 1);
             //Before teaching
             System.Console.WriteLine("Before teaching:");
             List<double> list = new List<double>();
@@ -43,7 +43,7 @@ namespace sciecNeuronowa
 
             //Teaching
             System.Console.WriteLine("Teaching...");
-            for (int i = 0; i < 1000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 List<double> oList = new List<double>();
                 oList.Add(-1.0);
