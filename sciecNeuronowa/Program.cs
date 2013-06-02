@@ -16,9 +16,14 @@ namespace sciecNeuronowa
         [STAThread]
         static void Main()
         {
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new Form1());
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Form1());
+            //Test();
+        }
+
+        static void Test()
+        {
             Network n = new Network(2, 1, 1);
             double[] y = n.eval(new double[] { 1.0, 1.0 });
             System.Console.WriteLine("Output = " + y[0]);
@@ -72,6 +77,5 @@ namespace sciecNeuronowa
                 System.Console.WriteLine(d);
             }
         }
-
     }
 }
