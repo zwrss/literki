@@ -16,6 +16,9 @@ namespace sciecNeuronowa
         private Bitmap img;
         private List<Bitmap> foundLetters;
         private Network n;
+        private FileStream plik;
+        private StreamWriter zapisuj;
+        private string path;
 
         public Form1()
         {
@@ -31,10 +34,14 @@ namespace sciecNeuronowa
 
         void btn_teach_Click(object sender, EventArgs e)
         {
-            string path = tbx_path.Text;
+            path = tbx_path.Text;
             string[] files = Directory.GetFiles(path);
             richTextBox2.Text = "";
-            
+            plik = new FileStream(path + "\\dane.txt", FileMode.Create, FileAccess.Write);
+            zapisuj = new StreamWriter(plik);
+            //zapisuj.Write(plik);
+            zapisuj.Close();
+            plik.Close();
             richTextBox2.AppendText("Aktualnie przetwarzane pliki: \n\n");
             
             foreach (var file in files)
@@ -47,18 +54,20 @@ namespace sciecNeuronowa
                 {
                     img = new Bitmap(file);
                     pictureBox1.Image = img;
-                    OnRecognizeButtonClick(this, EventArgs.Empty);
-
-                   
                     richTextBox2.AppendText("Numer pliku: " + getFileNumer(file) + "\n");
+
+                    plik = new FileStream(path + "\\dane.txt", FileMode.Append, FileAccess.Write);
+                    zapisuj = new StreamWriter(plik);
+                    zapisuj.Write(getFileNumer(file)+":");
+                    zapisuj.Close();
+                    plik.Close();
+                    OnRecognizeButtonClick(this, EventArgs.Empty);
                 }
-
-                
-                
             }
-
-            
+            MessageBox.Show("Uczenie zakonczone");
         }
+
+        
 
         private string getFileNumer(string file)
         {
@@ -97,15 +106,25 @@ namespace sciecNeuronowa
             richTextBox1.Text += "Zakończyłem wyszukiwanie liter\n";
             richTextBox1.Text += "Wczytane wektory:\n";
 
-            int i = 0;
-            foreach(int[] vector in cf.getVectors() )
+            if(!String.IsNullOrEmpty(path))
             {
-                richTextBox1.Text += "Wektor [" + i++ + "]: ";
-                /*foreach (int vector_element in vector)
+                plik = new FileStream(path + "\\dane.txt", FileMode.Append, FileAccess.Write);
+                zapisuj = new StreamWriter(plik);
+                int i = 0;
+                foreach(int[] vector in cf.getVectors() )
                 {
-                    richTextBox1.Text += vector_element + " ";
-                }*/
-                richTextBox1.Text += "\n";
+
+                    richTextBox1.Text += "Wektor [" + i++ + "]: ";
+                    foreach (int vector_element in vector)
+                    {
+                        //richTextBox1.Text += vector_element + " ";
+                        
+                        zapisuj.Write(vector_element+",");
+                    }
+                    richTextBox1.Text += "\n";
+                }
+                zapisuj.Close();
+                plik.Close();
             }
         }
 
