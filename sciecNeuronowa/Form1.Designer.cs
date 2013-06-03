@@ -45,6 +45,7 @@
             this.btn_select = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.btn_teach = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -136,6 +137,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.richTextBox2);
             this.tabPage2.Controls.Add(this.btn_select);
             this.tabPage2.Controls.Add(this.label2);
@@ -219,6 +221,16 @@
             this.btn_teach.Text = "Rozpocznij nauczanie";
             this.btn_teach.UseVisualStyleBackColor = true;
             // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(354, 107);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(157, 23);
+            this.button2.TabIndex = 9;
+            this.button2.Text = "Rozpocznij nauczanie";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -257,6 +269,7 @@
         private System.Windows.Forms.TextBox tbx_path;
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button btn_teach;
+        private System.Windows.Forms.Button button2;
     }
 }
 
