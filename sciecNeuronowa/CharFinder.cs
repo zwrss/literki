@@ -17,7 +17,8 @@ namespace sciecNeuronowa
         private List<int[]> vectors = new List<int[]>();
         private const int SCALED_IMAGE_WIDTH = 12;
         private const int SCALED_IMAGE_HEIGHT = 12;
-
+        private const int X_STEP = 3;
+        private const int Y_STEP = 3;
 
         public CharFinder(Bitmap imgToParse)
         {
@@ -29,9 +30,9 @@ namespace sciecNeuronowa
 
         public void search()
         {
-            for (int x = 0; x < img.Size.Width; x++)
+            for (int x = 0; x < img.Size.Width - X_STEP; x += X_STEP)
             {
-                for (int y = 0; y < img.Size.Height; y++) 
+                for (int y = 0; y < img.Size.Height - Y_STEP; y += Y_STEP)
                 {
                     
 
@@ -76,7 +77,7 @@ namespace sciecNeuronowa
                             }
 
                             
-                            if (min_x != max_x)
+                            if (min_x != max_x && max_y!= min_y)
                             {
                                 Rectangle srcRect = new Rectangle(min_x, min_y, (max_x - min_x), (max_y - min_y));
                                 Bitmap letter = (Bitmap)img.Clone(srcRect, img.PixelFormat);
@@ -131,7 +132,7 @@ namespace sciecNeuronowa
                 Color pixelColor = img.GetPixel(point.X, point.Y);
                 float jasnosc = pixelColor.GetBrightness();
 
-                if (jasnosc < 0.2)
+                if (jasnosc > 0.2)
                 {
                     localBlackPoints.Add(point);
             

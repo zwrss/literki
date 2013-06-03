@@ -58,7 +58,7 @@ namespace sciecNeuronowa
         {
             OpenFileDialog open = new OpenFileDialog();
 
-            open.Filter = "Image Files(*.jpg; *.jpeg; *.gif; *.bmp)|*.jpg; *.jpeg; *.gif; *.bmp";
+            open.Filter = "Image Files(*.jpg; *.png; *.gif; *.bmp)|*.jpg; *.png; *.gif; *.bmp";
             if (open.ShowDialog() == DialogResult.OK)
             {
                 img = new Bitmap(open.FileName);
