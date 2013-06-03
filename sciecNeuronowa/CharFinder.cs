@@ -17,8 +17,9 @@ namespace sciecNeuronowa
         private List<int[]> vectors = new List<int[]>();
         private const int SCALED_IMAGE_WIDTH = 12;
         private const int SCALED_IMAGE_HEIGHT = 12;
-        private const int X_STEP = 3;
-        private const int Y_STEP = 3;
+        private const int X_STEP = 5;
+        private const int Y_STEP = 5;
+        private const int MIN_FOUND_LETTER_WIDTH = 15;
 
         public CharFinder(Bitmap imgToParse)
         {
@@ -77,7 +78,10 @@ namespace sciecNeuronowa
                             }
 
                             
-                            if (min_x != max_x && max_y!= min_y)
+                            if (min_x != max_x  // nie wiem czemu czasami szerokosc lub wysokosc =0
+                                && max_y!= min_y
+                                && Math.Abs(min_x-max_x) > MIN_FOUND_LETTER_WIDTH // zabezpieczamy sie przed jakimis malymi smieciami
+                                )
                             {
                                 Rectangle srcRect = new Rectangle(min_x, min_y, (max_x - min_x), (max_y - min_y));
                                 Bitmap letter = (Bitmap)img.Clone(srcRect, img.PixelFormat);
@@ -100,9 +104,9 @@ namespace sciecNeuronowa
                                 ImageToVect imageToVect = new ImageToVect();
                                 imageToVect.loadImage(result);
                                 vectors.Add(imageToVect.getVect());
-                                
+                                g.DrawRectangle(Pens.Red, min_x, min_y, (max_x - min_x), (max_y - min_y));
                             }
-                            g.DrawRectangle(Pens.Red, min_x, min_y, (max_x - min_x), (max_y - min_y));
+                            
                         }
                     }
                 }
