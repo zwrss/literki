@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -22,8 +23,41 @@ namespace sciecNeuronowa
             openButton.Click += OnOpenButtonClick;
             recognizeButton.Click += OnRecognizeButtonClick;
             button1.Click += button1_Click;
+            btn_select.Click += btn_select_Click;
+            btn_teach.Click += btn_teach_Click;
             foundLetters = new List<Bitmap>();
             n = new Network(64, 32, 10);
+        }
+
+        void btn_teach_Click(object sender, EventArgs e)
+        {
+            string path = tbx_path.Text;
+            string[] files = Directory.GetFiles(path);
+            richTextBox2.Text = "";
+            
+            richTextBox2.AppendText("Pliki znajdujace sie w wybranym katalogu: \n\n");
+            
+            foreach (var file in files)
+            {
+                richTextBox2.AppendText(file + "\n");
+
+                img = new Bitmap(file);
+                pictureBox1.Image = img;
+                OnRecognizeButtonClick(this,EventArgs.Empty);
+            }
+
+            
+        }
+
+        void btn_select_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            DialogResult result = fbd.ShowDialog();
+            
+            if (!String.IsNullOrEmpty(fbd.SelectedPath))
+            {
+                tbx_path.Text = fbd.SelectedPath;
+            }
         }
 
         void button1_Click(object sender, EventArgs e)
@@ -68,6 +102,8 @@ namespace sciecNeuronowa
 
             } 
         }
+
+
 
        
     }

@@ -132,7 +132,7 @@ namespace sciecNeuronowa
                 Color pixelColor = img.GetPixel(point.X, point.Y);
                 float jasnosc = pixelColor.GetBrightness();
 
-                if (jasnosc > 0.2)
+                if (jasnosc < 0.2)
                 {
                     localBlackPoints.Add(point);
             
