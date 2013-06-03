@@ -58,6 +58,7 @@ namespace sciecNeuronowa
 
                     plik = new FileStream(path + "\\dane.txt", FileMode.Append, FileAccess.Write);
                     zapisuj = new StreamWriter(plik);
+                    zapisuj.Write("\r\n");
                     zapisuj.Write(getFileNumer(file)+":");
                     zapisuj.Close();
                     plik.Close();
