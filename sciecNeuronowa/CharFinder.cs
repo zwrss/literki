@@ -31,9 +31,9 @@ namespace sciecNeuronowa
 
         public void search()
         {
-            for (int x = 0; x < img.Size.Width - X_STEP; x += X_STEP)
+            for (int x = 1; x < (img.Size.Width - (X_STEP+1)); x += X_STEP)
             {
-                for (int y = 0; y < img.Size.Height - Y_STEP; y += Y_STEP)
+                for (int y = 1; y < (img.Size.Height - (Y_STEP+1)); y += Y_STEP)
                 {
                     
 
@@ -136,7 +136,7 @@ namespace sciecNeuronowa
                 Color pixelColor = img.GetPixel(point.X, point.Y);
                 float jasnosc = pixelColor.GetBrightness();
 
-                if (jasnosc < 0.2)
+                if (jasnosc > 0.2)
                 {
                     localBlackPoints.Add(point);
             

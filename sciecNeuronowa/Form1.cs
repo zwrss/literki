@@ -79,10 +79,10 @@ namespace sciecNeuronowa
             foreach(int[] vector in cf.getVectors() )
             {
                 richTextBox1.Text += "Wektor [" + i++ + "]: ";
-                foreach (int vector_element in vector)
+                /*foreach (int vector_element in vector)
                 {
                     richTextBox1.Text += vector_element + " ";
-                }
+                }*/
                 richTextBox1.Text += "\n";
             }
         }
