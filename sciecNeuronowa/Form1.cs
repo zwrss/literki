@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using pl.edu.pk.NeuralNetwork;
 
 namespace sciecNeuronowa
 {
@@ -13,13 +14,21 @@ namespace sciecNeuronowa
     {
         private Bitmap img;
         private List<Bitmap> foundLetters;
+        private Network n;
 
         public Form1()
         {
             InitializeComponent();
             openButton.Click += OnOpenButtonClick;
             recognizeButton.Click += OnRecognizeButtonClick;
+            button1.Click += button1_Click;
             foundLetters = new List<Bitmap>();
+            n = new Network(64, 32, 10);
+        }
+
+        void button1_Click(object sender, EventArgs e)
+        {
+            n = new Network(64, Convert.ToInt32(textBox2.Text), 10);
         }
 
         void OnRecognizeButtonClick(object sender, EventArgs e)
@@ -30,9 +39,6 @@ namespace sciecNeuronowa
             cf.search();
             pictureBox1.Image = new Bitmap(img);
             richTextBox1.Text += "Zakończyłem wyszukiwanie liter\n"; 
-
-
-            
         }
 
 
@@ -49,26 +55,6 @@ namespace sciecNeuronowa
                 richTextBox1.Text += "Wczytałem plik " + open.FileName + "\n"; 
 
             } 
-        }
-
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void panel1_Paint(object sender, PaintEventArgs e)
-        {
-
-        }
-
-        private void openButton_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
         }
 
        

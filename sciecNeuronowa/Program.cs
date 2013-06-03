@@ -19,16 +19,17 @@ namespace sciecNeuronowa
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
-            //Test();
+            //NNTest();
         }
 
         static void Test()
         {
-            Network n = new Network(2, 1, 1);
-            double[] y = n.eval(new double[] { 1.0, 1.0 });
-            System.Console.WriteLine("Output = " + y[0]);
+         //   Network n = new Network(2, 1, 1);
+         //   double[] y = n.eval(new double[] { 1.0, 1.0 });
+         //   System.Console.WriteLine("Output = " + y[0]);
             //n.teachMulti(new double[] { -1.0, 1.0 }, new double[] { -1.0 });
             /*for (int i = 0; i < 100000; i++)
+            for (int i = 0; i < 10000; i++)
             {
                 n.teach(new double[] { -1.0, -1.0 }, new double[] { -1.0 });
                 n.teach(new double[] { -1.0, 1.0 }, new double[] { -1.0 });
@@ -48,7 +49,7 @@ namespace sciecNeuronowa
                 0.203223224556291,
                 1.555737942719387
             });*/
-            {
+            /*{
                 n.bruteForceTeach(
                     new double[][] {
                         new double[] { -1, -1 }, 
@@ -75,7 +76,7 @@ namespace sciecNeuronowa
             foreach (double d in n.getWeights())
             {
                 System.Console.WriteLine(d);
-            }
+            }*/
         }
     }
 }

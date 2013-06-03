@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
@@ -70,10 +71,28 @@ namespace sciecNeuronowa
                                 }
                             }
 
+                            
+                            if (min_x != max_x)
+                            {
+                                Rectangle srcRect = new Rectangle(min_x, min_y, (max_x - min_x), (max_y - min_y));
+                                Bitmap letter = (Bitmap)img.Clone(srcRect, img.PixelFormat);
+
+                                Bitmap result = new Bitmap(12, 12);
+                                result.SetResolution(letter.HorizontalResolution, letter.VerticalResolution);
+
+                                using (Graphics graphics = Graphics.FromImage(result))
+                                {
+                                    //set the resize quality modes to high quality
+                                    graphics.CompositingQuality = System.Drawing.Drawing2D.CompositingQuality.HighQuality;
+                                    graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                                    graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.HighQuality;
+                                    //draw the image into the target bitmap
+                                    graphics.DrawImage(letter, 0, 0, result.Width, result.Height);
+                                }
+                                
+                                result.Save("dupa.bmp",ImageFormat.Bmp);
+                            }
                             g.DrawRectangle(Pens.Red, min_x, min_y, (max_x - min_x), (max_y - min_y));
-                            //g.FillRectangle(Brushes.Red, new Rectangle(new Point(min_x, min_y), new Size(max_x - min_x, max_y - min_y)));
-                            localBlackPoints.Clear();
-                            //MessageBox.Show("min_x: " + min_x + " min_y " + min_y + " max_x " + max_x + " height " + max_y );
                         }
                     }
                 }
