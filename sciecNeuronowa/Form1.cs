@@ -35,18 +35,40 @@ namespace sciecNeuronowa
             string[] files = Directory.GetFiles(path);
             richTextBox2.Text = "";
             
-            richTextBox2.AppendText("Pliki znajdujace sie w wybranym katalogu: \n\n");
+            richTextBox2.AppendText("Aktualnie przetwarzane pliki: \n\n");
             
             foreach (var file in files)
             {
                 richTextBox2.AppendText(file + "\n");
+                richTextBox2.SelectionStart = this.richTextBox2.Text.Length;
+                richTextBox2.ScrollToCaret();
 
-                img = new Bitmap(file);
-                pictureBox1.Image = img;
-                OnRecognizeButtonClick(this,EventArgs.Empty);
+                if(file.Contains(".jpg") || file.Contains(".JPG") || file.Contains(".JPEG"))
+                {
+                    img = new Bitmap(file);
+                    pictureBox1.Image = img;
+                    OnRecognizeButtonClick(this, EventArgs.Empty);
+
+                   
+                    richTextBox2.AppendText("Numer pliku: " + getFileNumer(file) + "\n");
+                }
+
+                
+                
             }
 
             
+        }
+
+        private string getFileNumer(string file)
+        {
+            string[] names = file.Split('\\');
+
+            string[] fileNumbers = names[names.Length - 1].Split('_');
+
+            string filename = fileNumbers[0];
+            
+            return filename;
         }
 
         void btn_select_Click(object sender, EventArgs e)
