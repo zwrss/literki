@@ -122,6 +122,7 @@ namespace sciecNeuronowa
                         
                         zapisuj.Write(vector_element+",");
                     }
+                    zapisuj.Write("\r\n");
                     richTextBox1.Text += "\n";
                 }
                 zapisuj.Close();
