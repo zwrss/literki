@@ -9,6 +9,8 @@ namespace sciecNeuronowa
 {
     class CharFinder
     {
+        public const int STEP = 1;
+
         List<Point> globalVisitedPixels;
         Bitmap img;
         Graphics g;
@@ -24,9 +26,9 @@ namespace sciecNeuronowa
 
         public void search()
         {
-            for (int x = 0; x < img.Size.Width; x++)
+            for (int x = 0; x < img.Size.Width; x = x + STEP)
             {
-                for (int y = 0; y < img.Size.Height; y++) 
+                for (int y = 0; y < img.Size.Height; y = y + STEP) 
                 {
                     
 
@@ -70,6 +72,16 @@ namespace sciecNeuronowa
                                 }
                             }
 
+
+
+                    
+                            if (min_x != max_x)
+                            {
+                                Rectangle srcRect = new Rectangle(min_x, min_y, (max_x - min_x), (max_y - min_y));
+                                Bitmap letter = (Bitmap)img.Clone(srcRect, img.PixelFormat);
+                                letter.SetResolution(8, 16);
+                                letter.Save("dupa");
+                            }
                             g.DrawRectangle(Pens.Red, min_x, min_y, (max_x - min_x), (max_y - min_y));
                             //g.FillRectangle(Brushes.Red, new Rectangle(new Point(min_x, min_y), new Size(max_x - min_x, max_y - min_y)));
                             localBlackPoints.Clear();
