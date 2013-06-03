@@ -69,14 +69,20 @@ namespace pl.edu.pk.NeuralNetwork
 
         void asInput(Perceptron n)
         {
-            Link link = new Link(1, null, n);
+            Random r = new Random(System.DateTime.Now.Millisecond);
+            double w = r.NextDouble();
+            System.Console.WriteLine("Waga: " + w);
+            Link link = new Link(w, null, n);
             this._input.Add(link);
             n.addInput(link);
         }
 
         void asOutput(Perceptron n)
         {
-            Link link = new Link(1, n, null);
+            Random r = new Random(System.DateTime.Now.Millisecond);
+            double w = r.NextDouble();
+            System.Console.WriteLine("Waga: " + w);
+            Link link = new Link(w, n, null);
             this._output.Add(link);
             n.addOutput(link);
         }
