@@ -31,9 +31,9 @@ namespace sciecNeuronowa
 
         public void search()
         {
-            for (int x = 1; x < (img.Size.Width - (X_STEP+1)); x += X_STEP)
+            for (int x = 0; x < (img.Size.Width - (X_STEP+2)); x += X_STEP)
             {
-                for (int y = 1; y < (img.Size.Height - (Y_STEP+1)); y += Y_STEP)
+                for (int y = 0; y < (img.Size.Height - (Y_STEP+2)); y += Y_STEP)
                 {
                     
 
@@ -132,33 +132,35 @@ namespace sciecNeuronowa
             if(!isListContainsPixel(point,globalVisitedPixels))
             {
                 globalVisitedPixels.Add(point);
+        
+                    Color pixelColor = img.GetPixel(point.X, point.Y);
+                    float jasnosc = pixelColor.GetBrightness();
 
-                Color pixelColor = img.GetPixel(point.X, point.Y);
-                float jasnosc = pixelColor.GetBrightness();
-
-                if (jasnosc > 0.2)
-                {
-                    localBlackPoints.Add(point);
-            
-
-                    if (point.X > 0 
-                        && point.Y > 0 
-                        && point.X < img.Size.Width 
-                        && point.Y < img.Size.Height
-                        //&& !isListContainsPixel(point, globalVisitedPixels)
-                        )
+                    if (jasnosc > 0.2)
                     {
-                 
-                        checkPixels(new Point(point.X - 1, point.Y - 1), localBlackPoints);
-                        checkPixels(new Point(point.X, point.Y - 1), localBlackPoints);
-                        checkPixels(new Point(point.X + 1, point.Y - 1), localBlackPoints);
-                        checkPixels(new Point(point.X + 1, point.Y), localBlackPoints);
-                        checkPixels(new Point(point.X + 1, point.Y + 1), localBlackPoints);
-                        checkPixels(new Point(point.X, point.Y + 1), localBlackPoints);
-                        checkPixels(new Point(point.X - 1, point.Y + 1), localBlackPoints);
-                        checkPixels(new Point(point.X - 1, point.Y), localBlackPoints);
+                        localBlackPoints.Add(point);
+
+
+                        if (point.X > 0
+                            && point.Y > 0
+                            && point.X < img.Size.Width-1
+                            && point.Y < img.Size.Height-1
+                            //&& !isListContainsPixel(point, globalVisitedPixels)
+                            )
+                        {
+
+                            checkPixels(new Point(point.X - 1, point.Y - 1), localBlackPoints);
+                            checkPixels(new Point(point.X, point.Y - 1), localBlackPoints);
+                            checkPixels(new Point(point.X + 1, point.Y - 1), localBlackPoints);
+                            checkPixels(new Point(point.X + 1, point.Y), localBlackPoints);
+                            checkPixels(new Point(point.X + 1, point.Y + 1), localBlackPoints);
+                            checkPixels(new Point(point.X, point.Y + 1), localBlackPoints);
+                            checkPixels(new Point(point.X - 1, point.Y + 1), localBlackPoints);
+                            checkPixels(new Point(point.X - 1, point.Y), localBlackPoints);
+                        }
                     }
-                }
+      
+                     
             }
 
         }
