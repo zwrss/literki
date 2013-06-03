@@ -10,10 +10,14 @@ namespace sciecNeuronowa
 {
     class CharFinder
     {
-        List<Point> globalVisitedPixels;
-        Bitmap img;
-        Graphics g;
+        private List<Point> globalVisitedPixels;
+        private Bitmap img;
+        private Graphics g;
         int foundLettersCount = 0;
+        private List<int[]> vectors = new List<int[]>();
+        private const int SCALED_IMAGE_WIDTH = 12;
+        private const int SCALED_IMAGE_HEIGHT = 12;
+
 
         public CharFinder(Bitmap imgToParse)
         {
@@ -77,7 +81,7 @@ namespace sciecNeuronowa
                                 Rectangle srcRect = new Rectangle(min_x, min_y, (max_x - min_x), (max_y - min_y));
                                 Bitmap letter = (Bitmap)img.Clone(srcRect, img.PixelFormat);
 
-                                Bitmap result = new Bitmap(12, 12);
+                                Bitmap result = new Bitmap(SCALED_IMAGE_WIDTH, SCALED_IMAGE_HEIGHT);
                                 result.SetResolution(letter.HorizontalResolution, letter.VerticalResolution);
 
                                 using (Graphics graphics = Graphics.FromImage(result))
@@ -90,7 +94,12 @@ namespace sciecNeuronowa
                                     graphics.DrawImage(letter, 0, 0, result.Width, result.Height);
                                 }
                                 
-                                result.Save("dupa.bmp",ImageFormat.Bmp);
+                                result.Save("dupa " + foundLettersCount + ".bmp",ImageFormat.Bmp);
+
+                                ImageToVect imageToVect = new ImageToVect();
+                                imageToVect.loadImage(result);
+                                vectors.Add(imageToVect.getVect());
+                                
                             }
                             g.DrawRectangle(Pens.Red, min_x, min_y, (max_x - min_x), (max_y - min_y));
                         }
@@ -147,6 +156,11 @@ namespace sciecNeuronowa
                 }
             }
 
+        }
+
+        public List<int[]> getVectors()
+        {
+            return vectors;
         }
     }
 }

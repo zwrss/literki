@@ -38,7 +38,19 @@ namespace sciecNeuronowa
             CharFinder cf = new CharFinder(img);
             cf.search();
             pictureBox1.Image = new Bitmap(img);
-            richTextBox1.Text += "Zakończyłem wyszukiwanie liter\n"; 
+            richTextBox1.Text += "Zakończyłem wyszukiwanie liter\n";
+            richTextBox1.Text += "Wczytane wektory:\n";
+
+            int i = 0;
+            foreach(int[] vector in cf.getVectors() )
+            {
+                richTextBox1.Text += "Wektor [" + i++ + "]: ";
+                foreach (int vector_element in vector)
+                {
+                    richTextBox1.Text += vector_element + " ";
+                }
+                richTextBox1.Text += "\n";
+            }
         }
 
 

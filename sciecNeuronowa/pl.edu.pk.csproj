@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CharFinder.cs" />
+    <Compile Include="ImageToVect.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
