@@ -32,7 +32,7 @@ namespace sciecNeuronowa
             btn_select.Click += btn_select_Click;
             btn_teach.Click += btn_teach_Click;
             foundLetters = new List<Bitmap>();
-            n = new Network(64, 32, 10);
+            n = new Network(144, 10, 20);
         }
 
         void button3_Click(object sender, EventArgs e)
@@ -41,43 +41,46 @@ namespace sciecNeuronowa
 
             if(!String.IsNullOrEmpty(textBox2.Text))
             {
-                    plik = new FileStream(textBox2.Text, FileMode.Open, FileAccess.Read);
-                    czytaj = new StreamReader(plik);
+                plik = new FileStream(textBox2.Text, FileMode.Open, FileAccess.Read);
+                czytaj = new StreamReader(plik);
                     
-                    ArrayList arrText = new ArrayList();
-                    List<double> output = new List<double>();
-                    List<double[] > input = new List<double[]>();
+                ArrayList arrText = new ArrayList();
+                List<double> output = new List<double>();
+                List<double[] > input = new List<double[]>();
                     
                     
-                    while (sLine != null)
+                while (sLine != null)
+                {
+                    sLine = czytaj.ReadLine();
+                    if (sLine != null)
+                        arrText.Add(sLine);
+                }
+
+                foreach (string line in arrText)
+                {
+                    string[] splitedLine = line.Split(':');
+
+                    string[] numbers = splitedLine[1].Split(',');
+
+                    double[] tmp = new double[144];
+
+                    output.Add(Convert.ToDouble(splitedLine[0]));
+
+                    for (int i = 0; i < numbers.Length - 1; i++ )
                     {
-                        sLine = czytaj.ReadLine();
-                        if (sLine != null)
-                            arrText.Add(sLine);
+                        tmp[i] = Convert.ToDouble(numbers[i]);
                     }
 
-                    foreach (string line in arrText)
-                    {
-                        string[] splitedLine = line.Split(':');
-
-                        string[] numbers = splitedLine[1].Split(',');
-
-                        double[] tmp = new double[144];
-
-                        output.Add(Convert.ToDouble(splitedLine[0]));
-
-                        for (int i = 0; i < numbers.Length - 1; i++ )
-                        {
-                            tmp[i] = Convert.ToDouble(numbers[i]);
-                        }
-
-                        input.Add(tmp);
-                    }
+                    input.Add(tmp);
+                }
                     
-                    czytaj.Close();
-                    plik.Close();
+                czytaj.Close();
+                plik.Close();
+                Console.WriteLine("Rozpoczeto uczenie");
+                richTextBox2.AppendText("Zaczynam uczenie... To moze trochę potrwać...\n");
+                n.fakeTeach(input.ToArray(), output.ToArray());
+                richTextBox2.AppendText("Zakończono uczenie!\n");
 
-                n.fakeTeach(input.ToArray(),output.ToArray());
             }
         }
 

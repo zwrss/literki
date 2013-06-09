@@ -151,7 +151,7 @@ namespace pl.edu.pk.NeuralNetwork
 
     public class Network
     {
-        Layer[] _layers;
+        public Layer[] _layers;
         int _lastLayer, _inputs, _outputs;
         double[] _err;
         double mi = 0.7;
@@ -162,23 +162,19 @@ namespace pl.edu.pk.NeuralNetwork
         {
             this._inputs = inputs;
             this._outputs = outputs;
-            this._layers = new Layer[4];
-            this._lastLayer = 3;
-
-            // preinput layer
-            this._layers[0] = new Layer(inputs);
+            this._layers = new Layer[3];
+            this._lastLayer = 2;
                         
             // input layer
-            this._layers[1] = new Layer(inputs);
-            this._layers[1].linkInputLayer(this._layers[0]);
+            this._layers[0] = new Layer(inputs);
 
             // hidden layer
-            this._layers[2] = new Layer(hiddens);
-            this._layers[2].linkInputLayer(this._layers[1]);
+            this._layers[1] = new Layer(hiddens);
+            this._layers[1].linkInputLayer(this._layers[0]);
 
             // output layer
-            this._layers[3] = new Layer(outputs);
-            this._layers[3].linkInputLayer(this._layers[2]);
+            this._layers[2] = new Layer(outputs);
+            this._layers[2].linkInputLayer(this._layers[1]);
 
             this._err = new double[outputs];
             for (int i = 0; i < outputs; i++)
@@ -331,7 +327,7 @@ namespace pl.edu.pk.NeuralNetwork
         {
             double y = 1.0;
             int iters = 0;
-            while (y > 0.0001 && iters < 10000)
+            while (y > 0.1 && iters < 10)
             {
                 iters += 1;
                 double k_start = Network.rand.NextDouble() * 10;
@@ -413,12 +409,51 @@ namespace pl.edu.pk.NeuralNetwork
 
         public void fakeTeach(double[][] inputs, double[] outputs)
         {
+            double[][] outs = new double[outputs.Length][];
+            for(int i = 0; i < outs.Length; i++)
+            {
+                if(outputs[i] < 1) outs[i] = new double[]{1,0,0,0,0,0,0,0,0,0};
+                else if(outputs[i] < 2) outs[i] = new double[]{0,1,0,0,0,0,0,0,0,0};
+                else if(outputs[i] < 3) outs[i] = new double[]{0,0,1,0,0,0,0,0,0,0};
+                else if(outputs[i] < 4) outs[i] = new double[]{0,0,0,1,0,0,0,0,0,0};
+                else if(outputs[i] < 5) outs[i] = new double[]{0,0,0,0,1,0,0,0,0,0};
+                else if(outputs[i] < 6) outs[i] = new double[]{0,0,0,0,0,1,0,0,0,0};
+                else if(outputs[i] < 7) outs[i] = new double[]{0,0,0,0,0,0,1,0,0,0};
+                else if(outputs[i] < 8) outs[i] = new double[]{0,0,0,0,0,0,0,1,0,0};
+                else if(outputs[i] < 9) outs[i] = new double[]{0,0,0,0,0,0,0,0,1,0};
+                else outs[i] = new double[]{0,0,0,0,0,0,0,0,0,1};
+            }
 
+            //bruteForceTeach(inputs, outs);
+
+            for (int j = 0; j < 10; j++)
+            {
+                for (int i = 0; i < outs.Length; i++)
+                {
+                    teach(inputs[i], outs[i]);
+                }
+            }
         }
 
         public int eval(int[] inputs)
         {
-            return (int)Math.Round(1.3);
+            double[] ins = new double[inputs.Length];
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                ins[i] = inputs[i];
+            }
+            double[] e = eval(ins);
+            double max = double.MinValue;
+            int j = 0;
+            for (int i = 0; i < e.Length; i++)
+            {
+                if (e[i] > max)
+                {
+                    max = e[i];
+                    j = i;
+                }
+            }
+            return j;
         }
 
     }
