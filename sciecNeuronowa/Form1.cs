@@ -49,6 +49,9 @@ namespace sciecNeuronowa
                 weights.Add(Convert.ToDouble(line));
             }
 
+            plik.Close();
+            czytaj.Close();
+
             if(weights.Count != 0)
             {
                 n.setWeights(weights.ToArray());
