@@ -32,12 +32,12 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.btn_teach = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.openButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.recognizeButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.richTextBox2 = new System.Windows.Forms.RichTextBox();
             this.btn_select = new System.Windows.Forms.Button();
@@ -46,7 +46,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSaveWeights = new System.Windows.Forms.Button();
+            this.btnReadWeights = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -87,7 +88,6 @@
             // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.btn_teach);
             this.tabPage1.Controls.Add(this.richTextBox1);
             this.tabPage1.Controls.Add(this.openButton);
             this.tabPage1.Controls.Add(this.pictureBox1);
@@ -101,15 +101,6 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Rozpoznawanie";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // btn_teach
-            // 
-            this.btn_teach.Location = new System.Drawing.Point(409, 268);
-            this.btn_teach.Name = "btn_teach";
-            this.btn_teach.Size = new System.Drawing.Size(157, 23);
-            this.btn_teach.TabIndex = 8;
-            this.btn_teach.Text = "Rozpocznij nauczanie";
-            this.btn_teach.UseVisualStyleBackColor = true;
             // 
             // richTextBox1
             // 
@@ -147,6 +138,8 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnReadWeights);
+            this.tabPage2.Controls.Add(this.btnSaveWeights);
             this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.richTextBox2);
@@ -164,6 +157,15 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Nauczanie";
             this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(436, 33);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(99, 23);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Rozpocznij";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -233,14 +235,23 @@
             this.textBox2.Size = new System.Drawing.Size(174, 20);
             this.textBox2.TabIndex = 0;
             // 
-            // button3
+            // btnSaveWeights
             // 
-            this.button3.Location = new System.Drawing.Point(436, 33);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(75, 23);
-            this.button3.TabIndex = 10;
-            this.button3.Text = "Rozpocznij";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnSaveWeights.Location = new System.Drawing.Point(354, 62);
+            this.btnSaveWeights.Name = "btnSaveWeights";
+            this.btnSaveWeights.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveWeights.TabIndex = 11;
+            this.btnSaveWeights.Text = "Zapisz wagi";
+            this.btnSaveWeights.UseVisualStyleBackColor = true;
+            // 
+            // btnReadWeights
+            // 
+            this.btnReadWeights.Location = new System.Drawing.Point(436, 62);
+            this.btnReadWeights.Name = "btnReadWeights";
+            this.btnReadWeights.Size = new System.Drawing.Size(99, 23);
+            this.btnReadWeights.TabIndex = 12;
+            this.btnReadWeights.Text = "Wczytaj wagi";
+            this.btnReadWeights.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -279,9 +290,10 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbx_path;
         private System.Windows.Forms.RichTextBox richTextBox2;
-        private System.Windows.Forms.Button btn_teach;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnReadWeights;
+        private System.Windows.Forms.Button btnSaveWeights;
     }
 }
 

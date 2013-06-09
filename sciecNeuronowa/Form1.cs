@@ -30,9 +30,51 @@ namespace sciecNeuronowa
             button1.Click += button1_Click;
             button3.Click += button3_Click;
             btn_select.Click += btn_select_Click;
-            btn_teach.Click += btn_teach_Click;
+            btnReadWeights.Click += btnReadWeights_Click;
+            btnSaveWeights.Click += btnSaveWeights_Click;
             foundLetters = new List<Bitmap>();
             n = new Network(144, 10, 20);
+        }
+
+        void btnReadWeights_Click(object sender, EventArgs e)
+        {
+            plik = new FileStream("wagi.txt", FileMode.Open, FileAccess.Read);
+            czytaj = new StreamReader(plik);
+            string line = "";
+            List<double> weights = new List<double>();
+
+            while(line != null)
+            {
+                line = czytaj.ReadLine();
+                weights.Add(Convert.ToDouble(line));
+            }
+
+            if(weights.Count != 0)
+            {
+                n.setWeights(weights.ToArray());
+                MessageBox.Show("Wagi zostaly wczytane");
+            }
+            
+        }
+
+        void btnSaveWeights_Click(object sender, EventArgs e)
+        {
+            var weights = n.getWeights();
+            if(weights != null)
+            {
+                plik = new FileStream("wagi.txt", FileMode.Create, FileAccess.Write);
+                zapisuj = new StreamWriter(plik);
+
+                foreach (double weight in weights)
+                {
+                    zapisuj.WriteLine(weight);
+                }
+                zapisuj.Close();
+                plik.Close();
+                
+                MessageBox.Show("Wagi zostaly zapisane");
+            }
+
         }
 
         void button3_Click(object sender, EventArgs e)
