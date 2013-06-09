@@ -327,11 +327,6 @@ namespace pl.edu.pk.NeuralNetwork
             setWeights(w);
         }
 
-        public void fakeTeach(double[][] inputs, double[] outputs)
-        {
-            
-        }
-
         public void bruteForceTeach(double[][] inputs, double[][] modelOutputs)
         {
             double y = 1.0;
@@ -414,6 +409,16 @@ namespace pl.edu.pk.NeuralNetwork
             }
             newArray[array.Length] = x;
             return newArray;
+        }
+
+        public void fakeTeach(double[][] inputs, double[] outputs)
+        {
+
+        }
+
+        public int eval(int[] inputs)
+        {
+            return (int)Math.Round(1.3);
         }
 
     }

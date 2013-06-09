@@ -160,7 +160,10 @@ namespace sciecNeuronowa
             cf.search();
             pictureBox1.Image = new Bitmap(img);
             richTextBox1.Text += "Zakończyłem wyszukiwanie liter\n";
-            richTextBox1.Text += "Wczytane wektory:\n";
+            foreach (int[] vector in cf.getVectors())
+            {
+                richTextBox1.Text += "Rozpoznano: " + n.eval(vector) + "\n";
+            }
             /*
             if(!String.IsNullOrEmpty(path))
             {
