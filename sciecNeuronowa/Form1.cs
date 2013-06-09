@@ -45,8 +45,8 @@ namespace sciecNeuronowa
                     czytaj = new StreamReader(plik);
                     
                     ArrayList arrText = new ArrayList();
-                    List<int> output = new List<int>();
-                    List<int[] > input = new List<int[]>();
+                    List<double> output = new List<double>();
+                    List<double[] > input = new List<double[]>();
                     
                     
                     while (sLine != null)
@@ -62,13 +62,13 @@ namespace sciecNeuronowa
 
                         string[] numbers = splitedLine[1].Split(',');
 
-                        int[] tmp = new int[144];
+                        double[] tmp = new double[144];
 
-                        output.Add(Convert.ToInt32(splitedLine[0]));
+                        output.Add(Convert.ToDouble(splitedLine[0]));
 
                         for (int i = 0; i < numbers.Length - 1; i++ )
                         {
-                            tmp[i] = Convert.ToInt32(numbers[i]);
+                            tmp[i] = Convert.ToDouble(numbers[i]);
                         }
 
                         input.Add(tmp);

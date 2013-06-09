@@ -327,7 +327,7 @@ namespace pl.edu.pk.NeuralNetwork
             setWeights(w);
         }
 
-        public void fakeTeach(int[][] inputs, int[] outputs)
+        public void fakeTeach(double[][] inputs, double[] outputs)
         {
             
         }
