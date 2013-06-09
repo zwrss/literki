@@ -32,20 +32,21 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.btn_teach = new System.Windows.Forms.Button();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.openButton = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.recognizeButton = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.btn_select = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
+            this.tbx_path = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
-            this.tbx_path = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btn_select = new System.Windows.Forms.Button();
-            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
-            this.btn_teach = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             this.tabControl1.SuspendLayout();
@@ -78,7 +79,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(2);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(604, 376);
@@ -93,18 +94,27 @@
             this.tabPage1.Controls.Add(this.textBox1);
             this.tabPage1.Controls.Add(this.recognizeButton);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(596, 350);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Rozpoznawanie";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // btn_teach
+            // 
+            this.btn_teach.Location = new System.Drawing.Point(409, 268);
+            this.btn_teach.Name = "btn_teach";
+            this.btn_teach.Size = new System.Drawing.Size(157, 23);
+            this.btn_teach.TabIndex = 8;
+            this.btn_teach.Text = "Rozpocznij nauczanie";
+            this.btn_teach.UseVisualStyleBackColor = true;
+            // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(21, 132);
-            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.richTextBox1.Margin = new System.Windows.Forms.Padding(2);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(545, 111);
             this.richTextBox1.TabIndex = 7;
@@ -137,6 +147,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.button3);
             this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.richTextBox2);
             this.tabPage2.Controls.Add(this.btn_select);
@@ -146,80 +157,13 @@
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Controls.Add(this.textBox2);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage2.Size = new System.Drawing.Size(596, 350);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Nauczanie";
             this.tabPage2.UseVisualStyleBackColor = true;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(354, 33);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Stwórz";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(71, 20);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(177, 13);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Liczba neuronow w warstwie ukrytej";
-            // 
-            // textBox2
-            // 
-            this.textBox2.Location = new System.Drawing.Point(74, 36);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(174, 20);
-            this.textBox2.TabIndex = 0;
-            // 
-            // tbx_path
-            // 
-            this.tbx_path.Location = new System.Drawing.Point(74, 136);
-            this.tbx_path.Name = "tbx_path";
-            this.tbx_path.Size = new System.Drawing.Size(174, 20);
-            this.tbx_path.TabIndex = 3;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(74, 117);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(134, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Katalog z danymi uczacymi";
-            // 
-            // btn_select
-            // 
-            this.btn_select.Location = new System.Drawing.Point(354, 136);
-            this.btn_select.Name = "btn_select";
-            this.btn_select.Size = new System.Drawing.Size(75, 23);
-            this.btn_select.TabIndex = 5;
-            this.btn_select.Text = "Wybierz";
-            this.btn_select.UseVisualStyleBackColor = true;
-            // 
-            // richTextBox2
-            // 
-            this.richTextBox2.Location = new System.Drawing.Point(74, 189);
-            this.richTextBox2.Name = "richTextBox2";
-            this.richTextBox2.Size = new System.Drawing.Size(461, 126);
-            this.richTextBox2.TabIndex = 7;
-            this.richTextBox2.Text = "";
-            // 
-            // btn_teach
-            // 
-            this.btn_teach.Location = new System.Drawing.Point(409, 268);
-            this.btn_teach.Name = "btn_teach";
-            this.btn_teach.Size = new System.Drawing.Size(157, 23);
-            this.btn_teach.TabIndex = 8;
-            this.btn_teach.Text = "Rozpocznij nauczanie";
-            this.btn_teach.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
@@ -230,6 +174,73 @@
             this.button2.Text = "Rozpocznij nauczanie";
             this.button2.UseVisualStyleBackColor = true;
             this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
+            // richTextBox2
+            // 
+            this.richTextBox2.Location = new System.Drawing.Point(74, 189);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.Size = new System.Drawing.Size(461, 126);
+            this.richTextBox2.TabIndex = 7;
+            this.richTextBox2.Text = "";
+            // 
+            // btn_select
+            // 
+            this.btn_select.Location = new System.Drawing.Point(354, 136);
+            this.btn_select.Name = "btn_select";
+            this.btn_select.Size = new System.Drawing.Size(75, 23);
+            this.btn_select.TabIndex = 5;
+            this.btn_select.Text = "Wybierz";
+            this.btn_select.UseVisualStyleBackColor = true;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(74, 117);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(134, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Katalog z danymi uczacymi";
+            // 
+            // tbx_path
+            // 
+            this.tbx_path.Location = new System.Drawing.Point(74, 136);
+            this.tbx_path.Name = "tbx_path";
+            this.tbx_path.Size = new System.Drawing.Size(174, 20);
+            this.tbx_path.TabIndex = 3;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(354, 33);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Wczytaj";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(71, 20);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Plik do nauczania";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(74, 36);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(174, 20);
+            this.textBox2.TabIndex = 0;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(436, 33);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(75, 23);
+            this.button3.TabIndex = 10;
+            this.button3.Text = "Rozpocznij";
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -270,6 +281,7 @@
         private System.Windows.Forms.RichTextBox richTextBox2;
         private System.Windows.Forms.Button btn_teach;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
     }
 }
 

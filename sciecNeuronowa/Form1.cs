@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,6 +19,7 @@ namespace sciecNeuronowa
         private Network n;
         private FileStream plik;
         private StreamWriter zapisuj;
+        private StreamReader czytaj;
         private string path;
 
         public Form1()
@@ -26,10 +28,57 @@ namespace sciecNeuronowa
             openButton.Click += OnOpenButtonClick;
             recognizeButton.Click += OnRecognizeButtonClick;
             button1.Click += button1_Click;
+            button3.Click += button3_Click;
             btn_select.Click += btn_select_Click;
             btn_teach.Click += btn_teach_Click;
             foundLetters = new List<Bitmap>();
             n = new Network(64, 32, 10);
+        }
+
+        void button3_Click(object sender, EventArgs e)
+        {
+            string sLine = "";
+
+            if(!String.IsNullOrEmpty(textBox2.Text))
+            {
+                    plik = new FileStream(textBox2.Text, FileMode.Open, FileAccess.Read);
+                    czytaj = new StreamReader(plik);
+                    
+                    ArrayList arrText = new ArrayList();
+                    List<int> output = new List<int>();
+                    List<int[] > input = new List<int[]>();
+                    
+                    
+                    while (sLine != null)
+                    {
+                        sLine = czytaj.ReadLine();
+                        if (sLine != null)
+                            arrText.Add(sLine);
+                    }
+
+                    foreach (string line in arrText)
+                    {
+                        string[] splitedLine = line.Split(':');
+
+                        string[] numbers = splitedLine[1].Split(',');
+
+                        int[] tmp = new int[144];
+
+                        output.Add(Convert.ToInt32(splitedLine[0]));
+
+                        for (int i = 0; i < numbers.Length - 1; i++ )
+                        {
+                            tmp[i] = Convert.ToInt32(numbers[i]);
+                        }
+
+                        input.Add(tmp);
+                    }
+                    
+                    czytaj.Close();
+                    plik.Close();
+
+                n.fakeTeach(input.ToArray(),output.ToArray());
+            }
         }
 
         void btn_teach_Click(object sender, EventArgs e)
@@ -94,7 +143,13 @@ namespace sciecNeuronowa
 
         void button1_Click(object sender, EventArgs e)
         {
-            n = new Network(64, Convert.ToInt32(textBox2.Text), 10);
+            OpenFileDialog open = new OpenFileDialog();
+
+            open.Filter = "Text Files (*.txt)|*.txt|All Files (*.*)|*.*";
+            if (open.ShowDialog() == DialogResult.OK)
+            {
+                textBox2.Text = open.FileName;
+            } 
         }
 
         void OnRecognizeButtonClick(object sender, EventArgs e)
@@ -106,7 +161,7 @@ namespace sciecNeuronowa
             pictureBox1.Image = new Bitmap(img);
             richTextBox1.Text += "Zakończyłem wyszukiwanie liter\n";
             richTextBox1.Text += "Wczytane wektory:\n";
-
+            /*
             if(!String.IsNullOrEmpty(path))
             {
                 plik = new FileStream(path + "\\dane.txt", FileMode.Append, FileAccess.Write);
@@ -127,7 +182,7 @@ namespace sciecNeuronowa
                 }
                 zapisuj.Close();
                 plik.Close();
-            }
+            }*/
         }
 
 

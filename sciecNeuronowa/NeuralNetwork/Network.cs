@@ -327,6 +327,11 @@ namespace pl.edu.pk.NeuralNetwork
             setWeights(w);
         }
 
+        public void fakeTeach(int[][] inputs, int[] outputs)
+        {
+            
+        }
+
         public void bruteForceTeach(double[][] inputs, double[][] modelOutputs)
         {
             double y = 1.0;
