@@ -327,7 +327,7 @@ namespace pl.edu.pk.NeuralNetwork
         {
             double y = 1.0;
             int iters = 0;
-            while (y > 0.1 && iters < 10)
+            while (y > 0.1 && iters < 3)
             {
                 iters += 1;
                 double k_start = Network.rand.NextDouble() * 10;
@@ -424,15 +424,15 @@ namespace pl.edu.pk.NeuralNetwork
                 else outs[i] = new double[]{0,0,0,0,0,0,0,0,0,1};
             }
 
-            //bruteForceTeach(inputs, outs);
+            bruteForceTeach(inputs, outs);
 
-            for (int j = 0; j < 10; j++)
+            /*for (int j = 0; j < 10; j++)
             {
                 for (int i = 0; i < outs.Length; i++)
                 {
                     teach(inputs[i], outs[i]);
                 }
-            }
+            }*/
         }
 
         public int eval(int[] inputs)
